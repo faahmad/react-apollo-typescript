@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import { Query } from 'react-apollo'
+import pokemonsQuery from './queries/pokemonsQuery'
+import { Pokemons, PokemonsVariables } from './queries/types/Pokemons'
 
-class App extends Component {
+class PokemonsQuery extends Query<Pokemons, PokemonsVariables> {}
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <PokemonsQuery query={pokemonsQuery} variables={{ first: 10 }}>
+        {({ data }) => (
+          <React.Fragment>
+            <h1>Pokemons</h1>
+            <code>
+              <pre>{JSON.stringify(data, null, 2)}</pre>
+            </code>
+          </React.Fragment>
+        )}
+      </PokemonsQuery>
+    )
   }
 }
 
-export default App;
+export default App
