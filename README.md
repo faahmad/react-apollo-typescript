@@ -1,3 +1,7 @@
+# React Apollo TypeScript
+
+Example of Apollo Codegen with TypeScript and React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
